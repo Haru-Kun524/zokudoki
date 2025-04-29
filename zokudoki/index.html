@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ゾクドキ</title>
+    <link rel="stylesheet" href="zokudoki SCC.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo">ゾクドキ</h1>
+        <div class="nav-tabs">
+            <a href="#home" class="active">ホーム</a>
+            <a href="#gore">グロ</a>
+            <a href="#accident">事故</a>
+            <a href="#funny">面白</a>
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <div class="search-bar">
+                <input type="text" placeholder="検索...">
+            </div>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-cog"></i>
+        </div>
+    </nav>
+
+    <div class="side-menu">
+        <div class="menu-header">
+            <h2>メニュー</h2>
+            <i class="fas fa-times close-menu"></i>
+        </div>
+        <div class="menu-items">
+            <div class="menu-section">
+                <h3>設定</h3>
+                <a href="#profile"><i class="fas fa-user"></i> プロフィール</a>
+                <a href="#notifications"><i class="fas fa-bell"></i> 通知設定</a>
+                <a href="#privacy"><i class="fas fa-lock"></i> プライバシー</a>
+                <a href="#theme"><i class="fas fa-paint-brush"></i> テーマ設定</a>
+            </div>
+            <div class="menu-section">
+                <h3>投稿</h3>
+                <a href="#" id="create-post"><i class="fas fa-plus"></i> 新規投稿</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-modal" id="postModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>新規投稿</h2>
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="postTitle">タイトル</label>
+                    <input type="text" id="postTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="postGenre">ジャンル</label>
+                    <select id="postGenre" required>
+                        <option value="">ジャンルを選択</option>
+                        <option value="gore">グロ</option>
+                        <option value="accident">事故</option>
+                        <option value="funny">面白</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postMedia">メディア（画像/動画）</label>
+                    <input type="file" id="postMedia" accept="image/*,video/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="postDescription">説明</label>
+                    <textarea id="postDescription" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">投稿する</button>
+            </form>
+        </div>
+    </div>
+
+    <main class="content-area">
+        <section id="home" class="content-section active">
+            <div class="section-header">
+                <h2>最新投稿</h2>
+                <div class="filter-container">
+                    <select id="homeFilter" class="filter-select">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+                </div>
+            </div>
+            <div class="posts-container" id="homePosts"></div>
+        </section>
+        <section id="gore" class="content-section">
+            <div class="section-header">
+                <h2>グロ</h2>
+                <div class="filter-container">
+                    <select id="goreFilter" class="filter-select">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+                </div>
+            </div>
+            <div class="posts-container" id="gorePosts"></div>
+        </section>
+        <section id="accident" class="content-section">
+            <div class="section-header">
+                <h2>事故</h2>
+                <div class="filter-container">
+                    <select id="accidentFilter" class="filter-select">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+                </div>
+            </div>
+            <div class="posts-container" id="accidentPosts"></div>
+        </section>
+        <section id="funny" class="content-section">
+            <div class="section-header">
+                <h2>面白</h2>
+                <div class="filter-container">
+                    <select id="funnyFilter" class="filter-select">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+                </div>
+            </div>
+            <div class="posts-container" id="funnyPosts"></div>
+        </section>
+    </main>
+
+    <!-- 投稿詳細ページ -->
+    <div class="post-detail-page" id="postDetailPage" style="display: none;">
+        <div class="post-detail-header">
+            <span class="post-detail-genre"></span>
+            <h2 class="post-detail-title"></h2>
+            <span class="post-detail-date"></span>
+        </div>
+        <div class="post-detail-media"></div>
+        <div class="post-detail-description"></div>
+        <button class="back-button">戻る</button>
+    </div>
+
+    <script src="zokudoki JavaScript.js"></script>
+</body>
+</html>
