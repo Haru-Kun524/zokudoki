@@ -35,14 +35,14 @@
         <div class="menu-items">
             <div class="menu-section">
                 <h3>設定</h3>
-                <a href="#profile"><i class="fas fa-user"></i> プロフィール</a>
+                <a href="#history"><i class="fas fa-history"></i> 履歴</a>
                 <a href="#notifications"><i class="fas fa-bell"></i> 通知設定</a>
                 <a href="#privacy"><i class="fas fa-lock"></i> プライバシー</a>
                 <a href="#theme"><i class="fas fa-paint-brush"></i> テーマ設定</a>
             </div>
             <div class="menu-section">
-                <h3>投稿</h3>
-                <a href="#" id="create-post"><i class="fas fa-plus"></i> 新規投稿</a>
+                <h3>Aatiniku</h3>
+                <a href="#" id="unume-btn"><i class="fas fa-key"></i> unume</a>
             </div>
         </div>
     </div>
@@ -75,6 +75,27 @@
                 </div>
                 <button type="submit" class="submit-btn">投稿する</button>
             </form>
+        </div>
+    </div>
+
+    <!-- パスワード認証モーダル -->
+    <div class="password-modal" id="passwordModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <form id="passwordForm">
+                <input type="password" id="password" placeholder=" " required>
+            </form>
+        </div>
+    </div>
+
+    <!-- 管理者メニューモーダル -->
+    <div class="admin-menu-modal" id="adminMenuModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="admin-menu-options">
+                <button id="newPostBtn" class="admin-menu-btn">新規投稿</button>
+                <button id="deletePostBtn" class="admin-menu-btn">投稿を削除</button>
+            </div>
         </div>
     </div>
 
@@ -126,6 +147,18 @@
                 </div>
             </div>
             <div class="posts-container" id="funnyPosts"></div>
+        </section>
+        <section id="history" class="content-section">
+            <div class="section-header">
+                <h2>閲覧履歴</h2>
+                <div class="filter-container">
+                    <select id="historyFilter" class="filter-select">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+                </div>
+            </div>
+            <div class="posts-container" id="historyPosts"></div>
         </section>
     </main>
 
