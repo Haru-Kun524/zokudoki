@@ -123,6 +123,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 初期投稿の表示
     displayPosts();
+
+    // テーマの初期化
+    initTheme();
+
+    // テーマ設定ボタン
+    document.getElementById('themeBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('themeModal').style.display = 'block';
+    });
+
+    // テーマ選択ボタン
+    document.querySelectorAll('.theme-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const theme = this.dataset.theme;
+            setTheme(theme);
+            document.getElementById('themeModal').style.display = 'none';
+        });
+    });
+
+    // 履歴クリアボタン
+    document.getElementById('clearHistoryBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        clearHistory();
+    });
 });
 
 // セクション切り替え
@@ -464,12 +488,6 @@ function deletePost(postId) {
     console.log('投稿を削除しました');
 }
 
-// 初期化時に管理者機能を設定
-document.addEventListener('DOMContentLoaded', () => {
-    updatePostButtonVisibility();
-    // ... existing initialization code ...
-});
-
 // 履歴の保存
 function saveToHistory(post) {
     let history = JSON.parse(localStorage.getItem('viewHistory') || '[]');
@@ -542,4 +560,24 @@ document.querySelector('a[href="#history"]').addEventListener('click', function(
     });
     document.getElementById('history').classList.add('active');
     displayHistory();
-}); 
+});
+
+// テーマ設定の初期化
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.classList.toggle('light-theme', savedTheme === 'light');
+}
+
+// テーマの切り替え
+function setTheme(theme) {
+    document.body.classList.toggle('light-theme', theme === 'light');
+    localStorage.setItem('theme', theme);
+}
+
+// 履歴のクリア
+function clearHistory() {
+    if (confirm('閲覧履歴をすべて削除してもよろしいですか？')) {
+        localStorage.removeItem('viewHistory');
+        displayHistory();
+    }
+} 

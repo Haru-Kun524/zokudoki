@@ -36,9 +36,8 @@
             <div class="menu-section">
                 <h3>設定</h3>
                 <a href="#history"><i class="fas fa-history"></i> 履歴</a>
-                <a href="#notifications"><i class="fas fa-bell"></i> 通知設定</a>
-                <a href="#privacy"><i class="fas fa-lock"></i> プライバシー</a>
-                <a href="#theme"><i class="fas fa-paint-brush"></i> テーマ設定</a>
+                <a href="#" id="clearHistoryBtn"><i class="fas fa-trash"></i> 履歴をクリア</a>
+                <a href="#" id="themeBtn"><i class="fas fa-paint-brush"></i> テーマ設定</a>
             </div>
             <div class="menu-section">
                 <h3>Aatiniku</h3>
@@ -95,6 +94,22 @@
             <div class="admin-menu-options">
                 <button id="newPostBtn" class="admin-menu-btn">新規投稿</button>
                 <button id="deletePostBtn" class="admin-menu-btn">投稿を削除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- テーマ設定モーダル -->
+    <div class="theme-modal" id="themeModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>テーマ設定</h2>
+            <div class="theme-options">
+                <button class="theme-btn" data-theme="dark">
+                    <i class="fas fa-moon"></i> ダークモード
+                </button>
+                <button class="theme-btn" data-theme="light">
+                    <i class="fas fa-sun"></i> ライトモード
+                </button>
             </div>
         </div>
     </div>
