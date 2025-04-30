@@ -88,27 +88,82 @@ body {
 }
 
 .search-bar {
-    display: none;
     position: absolute;
     top: 100%;
     right: 0;
-    padding: 0.5rem;
+    width: 300px;
     background: rgba(0, 0, 0, 0.9);
-    border-radius: 4px;
+    padding: 1rem;
+    border-radius: 8px;
     margin-top: 0.5rem;
+    display: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
 }
 
 .search-bar.active {
     display: block;
-    animation: fadeIn 0.3s ease;
+    animation: slideDown 0.3s ease;
 }
 
 .search-bar input {
-    padding: 0.5rem;
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
+    font-size: 1rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.no-results {
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ライトモードの検索バー */
+body.light-theme .search-bar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .search-bar input {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333333;
+}
+
+body.light-theme .search-bar input:focus {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .search-bar input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-theme .no-results {
+    color: #333333;
 }
 
 @keyframes pulse {
@@ -117,72 +172,267 @@ body {
     100% { text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 @media (max-width: 768px) {
-    .nav-tabs {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        flex-direction: column;
-        gap: 0;
-        padding: 1rem 0;
-    }
-
-    .nav-tabs.active {
-        display: flex;
-    }
-
-    .nav-tabs a {
-        width: 100%;
-        text-align: center;
-        border-radius: 0;
-        margin: 0;
-        padding: 1rem;
-    }
-
-    .search-container {
-        margin-right: 1rem;
-    }
-
-    .search-bar {
-        width: 200px;
-        right: -50px;
-    }
-
-    .search-bar input {
-        width: 100%;
-    }
-
-    .menu-toggle {
-        display: block;
-        font-size: 1.5rem;
-        cursor: pointer;
+    .navbar {
+        padding: 0.5rem;
+        flex-wrap: wrap;
+        height: auto;
     }
 
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        margin-right: auto;
+    }
+
+    .nav-tabs {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.3rem;
+        margin: 0.5rem 0;
+        width: 100%;
+        order: 3;
+        overflow: visible;
+    }
+
+    .nav-tabs a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        background: rgba(255, 0, 0, 0.1);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        border-radius: 4px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .search-container {
+        margin-left: auto;
+        margin-right: 0.5rem;
+        order: 2;
+    }
+
+    .search-bar {
+        width: 250px;
+        right: -50px;
+    }
+
+    .menu-toggle {
+        padding: 0.3rem;
+        order: 1;
+    }
+
+    .menu-toggle i {
+        font-size: 1.2rem;
+    }
+
+    .side-menu {
+        width: 100%;
+        right: -100%;
+    }
+
+    .menu-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .menu-section h3 {
+        font-size: 1rem;
+    }
+
+    .menu-items a {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .menu-items i {
+        width: 16px;
+    }
+
+    .content-area {
+        padding: 0.5rem;
+        margin-top: 80px;
+    }
+
+    .section-header {
+        margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .filter-select {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .post-card {
+        padding: 1rem;
+    }
+
+    .post-title {
+        font-size: 1.1rem;
+    }
+
+    .post-description {
+        font-size: 0.9rem;
+    }
+
+    .post-genre {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .post-date {
+        font-size: 0.7rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .history-item {
+        padding: 1rem;
+    }
+
+    .history-title {
+        font-size: 1rem;
+    }
+
+    .history-genre {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .history-date {
+        font-size: 0.7rem;
+    }
+
+    .view-history-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 0.5rem;
-    }
-
-    .search-bar {
-        width: 150px;
-        right: -30px;
+        padding: 0.3rem;
     }
 
     .logo {
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .nav-tabs a {
+        padding: 0.3rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .search-bar {
+        width: 200px;
+        right: -30px;
+    }
+
+    .menu-toggle {
+        padding: 0.2rem;
+    }
+
+    .menu-toggle i {
+        font-size: 1rem;
+    }
+
+    .content-area {
+        padding: 0.3rem;
+        margin-top: 70px;
+    }
+
+    .section-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .filter-select {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .post-card {
+        padding: 0.8rem;
+    }
+
+    .post-title {
+        font-size: 1rem;
+    }
+
+    .post-description {
+        font-size: 0.8rem;
+    }
+
+    .post-genre {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.4rem;
+    }
+
+    .post-date {
+        font-size: 0.6rem;
+    }
+
+    .modal-content {
+        padding: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .submit-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .history-item {
+        padding: 0.8rem;
+    }
+
+    .history-title {
+        font-size: 0.9rem;
+    }
+
+    .history-genre {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.4rem;
+    }
+
+    .history-date {
+        font-size: 0.6rem;
+    }
+
+    .view-history-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
     }
 }
 
